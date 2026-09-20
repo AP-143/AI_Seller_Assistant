@@ -40,6 +40,37 @@ def generate_json(system: str, prompt: str, schema: dict, max_tokens: int = 1024
     return json.loads(resp.text)
 
 
+PRODUCT_INFO_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "product_name": {
+            "type": "string",
+            "description": "The product name exactly as written in the caption (verbatim substring, don't shorten or rephrase it) — with only price and category words removed",
+        },
+        "category": {
+            "type": "string",
+            "description": "Product category in short Indonesian marketplace terms (e.g. 'gaming', 'tas wanita'), inferred if not stated explicitly",
+        },
+        "cost_price": {
+            "type": "integer",
+            "description": "Cost/modal price in plain Rupiah integer, no currency symbol or separators. 0 if not mentioned anywhere in the text.",
+        },
+    },
+    "required": ["product_name", "category", "cost_price"],
+}
+
+
+def parse_product_caption(caption: str) -> dict:
+    """Free-form caption -> {product_name, category, cost_price}, for callers
+    whose caption doesn't match the fast literal 'Nama | Kategori | Harga' parse."""
+    system = (
+        "Extract product name, category, and cost price (harga modal, in Rupiah) "
+        "from this Indonesian Telegram caption. The caption is free-form text, "
+        "not a fixed format."
+    )
+    return generate_json(system, caption, PRODUCT_INFO_SCHEMA, max_tokens=1024)
+
+
 def _generate_one_photo(image_bytes: bytes, prompt: str) -> bytes:
     resp = _client.models.generate_content(
         model=IMAGE_MODEL,

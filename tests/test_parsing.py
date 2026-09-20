@@ -5,21 +5,15 @@ import os
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-
-def parse_caption(caption: str):
-    parts = [p.strip() for p in caption.split("|")]
-    if len(parts) != 3:
-        return None
-    name, category, cost_raw = parts
-    digits = "".join(ch for ch in cost_raw if ch.isdigit())
-    return name, category, int(digits) if digits else None
+from bot.handlers import _parse_caption_fast
 
 
 def demo():
-    assert parse_caption("Tas Rajut Mini | Tas Wanita | 45000") == ("Tas Rajut Mini", "Tas Wanita", 45000)
-    assert parse_caption("Rp 45.000 | x | y")[0] == "Rp 45.000"
-    assert parse_caption("cuma dua | bagian") is None
-    assert parse_caption("A | B | mahal")[2] is None
+    assert _parse_caption_fast("Tas Rajut Mini | Tas Wanita | 45000") == ("Tas Rajut Mini", "Tas Wanita", 45000)
+    assert _parse_caption_fast("Rp 45.000 | x | y") is None  # no digits in price part -> falls through to Gemini
+    assert _parse_caption_fast("cuma dua | bagian") is None
+    assert _parse_caption_fast("A | B | mahal") is None
+    assert _parse_caption_fast("nama produk bebas kategori gaming modal 400rb") is None
 
     print("ok")
 

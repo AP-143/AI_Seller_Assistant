@@ -81,6 +81,14 @@ use `response_mime_type: "application/json"` + `response_schema` (see
   `RuntimeError` on `FinishReason.MAX_TOKENS` instead of leaving you to debug
   a JSON parse error.
 
+- **Verbatim-extraction gotcha**: asking the model to extract a field
+  "cleanly" (e.g. `product_name` with price/category words stripped) can make
+  it over-clean and drop real words too (`"Gamepad Rexus Daxa gaming 400000"`
+  → `product_name: "Rexus Daxa"`, silently dropping "Gamepad"). Fix: tell it
+  explicitly to keep the field "exactly as written / verbatim substring,
+  don't shorten or rephrase" and name only what to remove. See
+  `PRODUCT_INFO_SCHEMA` / `parse_product_caption` in `gemini_client.py`.
+
 ## When NOT to use structured output
 
 Free-form generation with no fixed shape (e.g. a single prose answer) doesn't

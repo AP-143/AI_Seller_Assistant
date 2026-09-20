@@ -8,7 +8,7 @@ description: Prompt patterns for this repo's Gemini calls (services/gemini_clien
 Researched patterns, applied in `services/gemini_client.py` and `graph/nodes.py`.
 Reuse these instead of re-deriving from scratch.
 
-## Image editing (`generate_product_photo`, model `gemini-2.5-flash-image`)
+## Image editing (`generate_product_photos`, model `gemini-3.1-flash-lite-image`)
 
 Source: [official Gemini image-gen docs](https://ai.google.dev/gemini-api/docs/image-generation),
 [Nano Banana prompt patterns](https://www.promptzone.com/darcy_reddy/nano-banana-prompt-patterns-for-gemini-25-flash-image-447f).
@@ -33,13 +33,21 @@ sentences and spatial relations, not comma-separated tags.
   it only when the user actually wants that literal fixed look, not as the
   default.
 - **What actually changed output quality when tested on this project**:
-  - `gemini-2.5-flash-image` kept product fidelity better than
-    `gemini-3.1-flash-image` and `gemini-3-pro-image` in real testing, despite
-    being the cheapest and the oldest of the three. Don't assume newer/pricier
-    = better fidelity — re-test empirically before switching models.
-  - `gemini-2.5-flash-image` is DEPRECATED 2026-10-02. When it's pulled,
-    re-run this same empirical fidelity comparison across whatever models are
-    current — don't just pick the newest by default.
+  - Model history on this project, in order tried: `gemini-2.5-flash-image`
+    ($0.039, good fidelity) → `gemini-3.1-flash-image` ($0.067, worse
+    fidelity — product details drifted) → `gemini-3-pro-image` ($0.134, worse
+    fidelity, most expensive) → back to `gemini-2.5-flash-image` → migrated to
+    **`gemini-3.1-flash-lite-image`** ($0.0336, cheapest of all five, good
+    fidelity in testing, deprecation not until ~2027-05) because
+    `gemini-2.5-flash-image` was DEPRECATED 2026-10-02.
+  - Lesson: don't assume newer/pricier = better fidelity, AND don't assume
+    "flash" beats "flash-lite" on fidelity either — `flash-lite` outperformed
+    plain `flash` here. Re-test empirically on an actual product photo before
+    switching models; the naming tier doesn't predict fidelity.
+  - When `gemini-3.1-flash-lite-image` is eventually deprecated too, re-run
+    this same empirical fidelity comparison across whatever models are
+    current — don't just pick the newest or cheapest by default without
+    testing on a real photo first.
 - **Multiple variants**: `candidate_count` in the request config is REJECTED
   for this model ("Multiple candidates is not enabled for this model", 400).
   To get N image variants, issue N separate `generate_content` calls (see

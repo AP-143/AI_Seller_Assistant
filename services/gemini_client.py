@@ -8,7 +8,7 @@ import config
 
 _client = genai.Client(api_key=config.GEMINI_API_KEY)
 MODEL = "gemini-3.6-flash"
-IMAGE_MODEL = "gemini-2.5-flash-image"
+IMAGE_MODEL = "gemini-3.1-flash-lite-image"
 
 
 def generate(system: str, prompt: str, max_tokens: int = 1024) -> str:

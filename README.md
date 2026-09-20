@@ -10,9 +10,9 @@ Raw photo in, before any editing:
 
 <img src="docs/before.jpg" width="300" alt="Raw product photo before enhancement">
 
-Two of the 3 generated studio-look variants:
+The 3 generated studio-look variants:
 
-<img src="docs/variant1.jpg" width="250" alt="Generated studio-look variant 1"> <img src="docs/variant2.jpg" width="250" alt="Generated studio-look variant 2">
+<img src="docs/variant1.jpg" width="200" alt="Generated studio-look variant 1"> <img src="docs/variant2.jpg" width="200" alt="Generated studio-look variant 2"> <img src="docs/variant3.jpg" width="200" alt="Generated studio-look variant 3">
 
 Full bot output for the same product — 3 studio-look photo variants, listing
 title/description/price, and promo captions:

@@ -13,12 +13,12 @@ Raw photo in, before any editing:
 Full bot output for the same product — 3 studio-look photo variants, listing
 title/description/price, and promo captions:
 
+![Telegram flow: send photo, receive photos + listing + price](docs/demo-flow.png)
 ![Bot output: photos, listing, price, captions](docs/demo.png)
 
 The 3 generated studio-look variants:
 
 <img src="docs/variant1.jpg" width="200" alt="Generated studio-look variant 1"> <img src="docs/variant2.jpg" width="200" alt="Generated studio-look variant 2"> <img src="docs/variant3.jpg" width="200" alt="Generated studio-look variant 3"> 
-![Telegram flow: send photo, receive photos + listing + price](docs/demo-flow.png)
 
 ## Stack
 

@@ -6,11 +6,6 @@ and a suggested price range.
 
 ## Demo
 
-Full Telegram flow — send a photo with caption, bot replies with the studio
-photo album, listing, and price:
-
-![Telegram flow: send photo, receive photos + listing + price](docs/demo-flow.png)
-
 Raw photo in, before any editing:
 
 <img src="docs/before.jpg" width="300" alt="Raw product photo before enhancement">
@@ -22,7 +17,8 @@ title/description/price, and promo captions:
 
 The 3 generated studio-look variants:
 
-<img src="docs/variant1.jpg" width="200" alt="Generated studio-look variant 1"> <img src="docs/variant2.jpg" width="200" alt="Generated studio-look variant 2"> <img src="docs/variant3.jpg" width="200" alt="Generated studio-look variant 3">
+<img src="docs/variant1.jpg" width="200" alt="Generated studio-look variant 1"> <img src="docs/variant2.jpg" width="200" alt="Generated studio-look variant 2"> <img src="docs/variant3.jpg" width="200" alt="Generated studio-look variant 3"> 
+![Telegram flow: send photo, receive photos + listing + price](docs/demo-flow.png)
 
 ## Stack
 

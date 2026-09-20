@@ -4,6 +4,17 @@ Telegram bot for Indonesian UMKM sellers. Send a product photo + short info,
 get back: studio-look photo, marketplace listing text, 3 promo captions,
 and a suggested price range.
 
+## Demo
+
+Raw photo in, before any editing:
+
+<img src="docs/before.jpg" width="300" alt="Raw product photo before enhancement">
+
+Full bot output for the same product — 3 studio-look photo variants, listing
+title/description/price, and 2 of 3 promo captions:
+
+![Bot output: photos, listing, price, captions](docs/demo.png)
+
 ## Structure
 
 ```

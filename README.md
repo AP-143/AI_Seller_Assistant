@@ -6,6 +6,11 @@ and a suggested price range.
 
 ## Demo
 
+Full Telegram flow — send a photo with caption, bot replies with the studio
+photo album, listing, and price:
+
+![Telegram flow: send photo, receive photos + listing + price](docs/demo-flow.png)
+
 Raw photo in, before any editing:
 
 <img src="docs/before.jpg" width="300" alt="Raw product photo before enhancement">

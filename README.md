@@ -53,6 +53,11 @@ cp .env.example .env   # fill in your keys
 python main.py
 ```
 
+`ALLOWED_USER_IDS` in `.env` is required — comma-separated Telegram user IDs
+allowed to trigger a generate (it costs real money per request). Empty =
+nobody allowed. Get your ID by messaging the bot with `/start` and checking
+its console log.
+
 ## User flow (Telegram)
 
 Send a photo with caption: `Nama Produk | Kategori | Harga Modal`

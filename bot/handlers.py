@@ -2,6 +2,7 @@ import logging
 from io import BytesIO
 from telegram import InputMediaPhoto, Update
 from telegram.ext import ContextTypes
+import config
 from graph.workflow import run as run_graph
 
 logger = logging.getLogger(__name__)
@@ -12,14 +13,22 @@ CAPTION_HELP = (
     "Contoh: Tas Rajut Mini | Tas Wanita | 45000"
 )
 
+NOT_ALLOWED = "Bot ini masih private, belum buat umum. Hubungi pemilik bot kalau mau akses."
+
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    logger.info("start from user_id=%s", update.effective_user.id)
     await update.message.reply_text(
         "Halo! Aku bantu bikin foto + listing produk kamu.\n\n" + CAPTION_HELP
     )
 
 
 async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if update.effective_user.id not in config.ALLOWED_USER_IDS:
+        logger.warning("blocked photo from unauthorized user_id=%s", update.effective_user.id)
+        await update.message.reply_text(NOT_ALLOWED)
+        return
+
     caption = update.message.caption or ""
     parts = [p.strip() for p in caption.split("|")]
     if len(parts) != 3:

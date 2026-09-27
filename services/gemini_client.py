@@ -91,7 +91,6 @@ def generate_product_photos(image_url: str, product_name: str, category: str, n:
     Prompt gives the model a role and a goal, not a fixed visual checklist —
     background/lighting/angle choices are the model's own professional
     judgment, adapted to what this specific product category actually needs.
-    See .claude/skills/gemini-prompting/SKILL.md for why.
 
     candidate_count isn't supported for this image model (API rejects it with
     "Multiple candidates is not enabled for this model"), so N separate calls
